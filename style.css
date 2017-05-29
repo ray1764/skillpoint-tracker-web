@@ -33,3 +33,33 @@
 	margin-right: auto;
 	word-spacing: .15em;
 }
+
+.pbtn {
+	text-decoration: underline;
+	color: DarkGray;
+	font-size: .8em;
+	top:1%;
+	left:1%;
+	position: absolute;
+}
+
+#adds {
+	text-align: center;
+	display:block;
+}
+
+button#add_skill, button#add_action {
+	background-color: purple;
+	color: white;
+	font-weight:bold;
+	width:8em;
+	margin: .5em 2em .5em 2em;
+}
+
+#skills {
+	width:40%;
+	height: 200px;
+	position: relative;
+	left:1%;
+	background-color: red;
+}
