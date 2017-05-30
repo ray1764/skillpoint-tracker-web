@@ -56,14 +56,25 @@ button#add_skill, button#add_action {
 	margin: .5em 2em .5em 2em;
 }
 
-#skills {
+#skillsDiv {
 	width:40%;
 	height: 200px;
 	position: relative;
-	left:1%;
+	left: 1%;
 	background-color: red;
+	display: inline-block;
 }
 
 tr.thead {
 	font-weight: bold;
+}
+
+#actionsDiv {
+	width:40%;
+	height: 200px;
+	position: relative;
+	display: inline-block;
+	float: right;
+	right: 1%;
+	background-color: cyan;
 }
