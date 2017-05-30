@@ -12,7 +12,8 @@
 </head>
 
 <body>
-  
+  <script src="main.js"></script>
+
   <p class=pbtn>click for help</p>
 
   <div id="header">
@@ -21,12 +22,24 @@
   </div>
 
   <div id=adds>
-    <button id="add_skill">Add Skill</button>
+    <input id="skillsInput" type="text" name="newSkill" value="Skill Name" />
+    <button id="add_skill" onclick="addSkill()">Add Skill</button>
+    <br />
+    <input id="ActionInputName" type="text" name="newAction" value="Action Name" />
+    <select id="ActionSelectSkill">
+      <option>Corresponding Skill</option>
+    </select>
     <button id="add_action">Add Action</button>
+
   </div>
 
   <div id="skills">
-    
+  <table id="skillsTable">
+  <tr class="thead">
+  <td>Skill Name</td>
+  <td>Points</td>
+  </tr>
+  </table>
   </div>
 </body>
 

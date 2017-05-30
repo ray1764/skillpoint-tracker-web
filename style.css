@@ -63,3 +63,7 @@ button#add_skill, button#add_action {
 	left:1%;
 	background-color: red;
 }
+
+tr.thead {
+	font-weight: bold;
+}

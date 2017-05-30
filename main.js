@@ -2,7 +2,7 @@ var skillsArray = [];
 var pointsArray = [];
 
 function addSkill() {
-	var newSkill = window.prompt("Name of new skill");
+	var newSkill = document.getElementById("skillsInput").value;
 	skillsArray.push(newSkill);
 	pointsArray.push(0);
 	// insert rows and cells for new skill and point counter
@@ -13,4 +13,11 @@ function addSkill() {
 	// put new skill and counter text in to new cells
 	cell1.innerHTML = newSkill;
 	cell2.innerHTML = 0;
+
+	//add new skill to corresponding skills selection
+	var select = document.getElementById("ActionSelectSkill");
+	var opt = document.createElement("option");
+	opt.textContent = newSkill;
+	opt.value = newSkill;
+	select.appendChild(opt);
 }
