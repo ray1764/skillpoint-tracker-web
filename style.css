@@ -34,7 +34,7 @@
 	word-spacing: .15em;
 }
 
-.pbtn {
+p#help {
 	text-decoration: underline;
 	color: DarkGray;
 	font-size: .8em;
@@ -43,38 +43,60 @@
 	position: absolute;
 }
 
-#adds {
+#addsDiv {
 	text-align: center;
 	display:block;
 }
 
-button#add_skill, button#add_action {
+#addSkillBtn, #addActionBtn {
 	background-color: purple;
 	color: white;
 	font-weight:bold;
 	width:8em;
-	margin: .5em 2em .5em 2em;
+	margin: .3em 2em .3em 2em;
 }
 
-#skillsDiv {
-	width:40%;
+h3 {
+	padding-top: 0.1em;
+	text-decoration: underline;
+	font-family: "Alegreya Sans", sans-serif;
+}
+
+#skillDiv {
+	width:35%;
 	height: 200px;
 	position: relative;
 	left: 1%;
-	background-color: red;
+	background-color: yellow;
 	display: inline-block;
+}
+
+#skillTable {
+	width: 98%;
+	margin-left: auto;
+	margin-right: auto;;
+
+}
+
+.cell1 {
+	width:75%;
 }
 
 tr.thead {
 	font-weight: bold;
 }
 
-#actionsDiv {
-	width:40%;
+#actionDiv {
+	width:60%;
 	height: 200px;
 	position: relative;
 	display: inline-block;
 	float: right;
 	right: 1%;
 	background-color: cyan;
+}
+
+.actionBtn {
+	padding: .15em;
+	margin: .3em;
 }

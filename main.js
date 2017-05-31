@@ -1,20 +1,22 @@
-var skillsArray = [];
-var pointsArray = [];
+var skillArray = [];
+var pointArray = [];
 
 function addSkill() {
-	var newSkill = document.getElementById("skillsInput").value;
-	skillsArray.push(newSkill);
-	pointsArray.push(0);
+	var newSkill = document.getElementById("skillInput").value;
+	skillArray.push(newSkill);
+	pointArray.push(0);
 
 	// insert rows and cells for new skill and point counter
-	var table = document.getElementById("skillsTable");
-	var row = table.insertRow(skillsArray.length);
+	var table = document.getElementById("skillTable");
+	var row = table.insertRow(skillArray.length);
 	var cell1 = row.insertCell(0);
 	var cell2 = row.insertCell(1);
 
 	// put new skill and counter text in to new cells
 	cell1.innerHTML = newSkill;
+	cell1.className = "cell1";
 	cell2.innerHTML = 0;
+	cell2.className = "cell2";
 
 	//add new skill to corresponding skills selection
 	var select = document.getElementById("ActionSelectSkill");
@@ -30,8 +32,9 @@ function addAction() {
 	var pointValue = document.getElementById("ActionInputPoints").value;
 
 	// make button
-	var div = document.getElementById("actionsDiv");
+	var div = document.getElementById("actionDiv");
 	var newButton = document.createElement("button");
-	newButton.textContent = newAction + " - " + pointValue;
 	div.appendChild(newButton);
+	newButton.textContent = newAction + " - " + pointValue;
+	newButton.className = "actionBtn";
 }

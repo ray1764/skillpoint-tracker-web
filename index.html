@@ -14,17 +14,17 @@
 <body>
   <script src="main.js"></script>
 
-  <p class=pbtn>click for help</p>
+  <p id=help>click for help</p>
 
   <div id="header">
- 		<h1 class="title">Skillpoint Tracker</h1>
-    <p> Quantify and keep track of the time and effort put into specific aspects of your life</p>
+ 		<h1>Skillpoint Tracker</h1>
+    <p>Quantify and keep track of the time and effort put into specific aspects of your life</p>
   </div>
 
-  <div id=adds>
+  <div id=addsDiv>
 
-    <input id="skillsInput" type="text" name="newSkill" value="Skill Name" />
-    <button id="add_skill" onclick="addSkill()">Add Skill</button>
+    <input id="skillInput" type="text" name="newSkill" value="Skill Name" />
+    <button id="addSkillBtn" onclick="addSkill()">Add Skill</button>
     <br />
 
     <input id="ActionInputName" type="text" name="newAction" value="Action Name" />
@@ -32,20 +32,22 @@
       <option>Corresponding Skill</option>
     </select>
     <input id="ActionInputPoints" type="number" name="PointValue" min="1" />
-    <button id="add_action" onclick="addAction()">Add Action</button>
+    <button id="addActionBtn" onclick="addAction()">Add Action</button>
 
   </div>
 
-  <div id="skillsDiv">
-  <table id="skillsTable">
+  <div id="skillDiv">
+  <h3>Skills</h3>
+  <table id="skillTable">
   <tr class="thead">
-  <td>Skill Name</td>
-  <td>Points</td>
+  <td class="cell1">Name</td>
+  <td class="cell2">Points</td>
   </tr>
   </table>
   </div>
 
-  <div id="actionsDiv">
+  <div id="actionDiv">
+  <h3>Actions</h3>
   </div>
 
 </body>
