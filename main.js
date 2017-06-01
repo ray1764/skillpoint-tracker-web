@@ -9,6 +9,7 @@ function addSkill() {
 	// insert rows and cells for new skill and point counter
 	var table = document.getElementById("skillTable");
 	var row = table.insertRow(skillArray.length);
+	row.className = "skillRow";
 	var cell1 = row.insertCell(0);
 	var cell2 = row.insertCell(1);
 
@@ -35,6 +36,16 @@ function addAction() {
 	var div = document.getElementById("actionDiv");
 	var newButton = document.createElement("button");
 	div.appendChild(newButton);
-	newButton.textContent = newAction + " - " + pointValue;
+	newButton.textContent = newAction + ", + " + pointValue + " " + corrSkill;
 	newButton.className = "actionBtn";
+
+
+	function clickAction() {
+		var i = skillArray.indexOf(corrSkill);
+		var counter = document.getElementsByClassName("cell2")[i+1].textContent;
+		newCounter = parseInt(counter,10) + parseInt(pointValue,10);
+		document.getElementsByClassName("cell2")[i+1].textContent = newCounter;
+	}
+
+	newButton.onclick = clickAction
 }
