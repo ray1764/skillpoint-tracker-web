@@ -3,6 +3,7 @@
 	padding: 0;
 } 
 
+/* header top area */
 #header {
 	width: 100%;
 	text-align: center;
@@ -43,6 +44,7 @@ p#help {
 	position: absolute;
 }
 
+/* add buttons area */
 #addsDiv {
 	text-align: center;
 	display:block;
@@ -56,6 +58,7 @@ p#help {
 	margin: .3em 2em .3em 2em;
 }
 
+/* skills table area */
 h3 {
 	padding-top: 0.1em;
 	text-decoration: underline;
@@ -79,15 +82,25 @@ h3 {
 }
 
 .cell1 {
-	width:75%;
+	width:65%;
+	max-width: 65%;
+}
+
+.skillOpt {
+	text-decoration: underline;
+	font-size: .7em;
+	color: blue;
+	display: inline;
+	margin: .25em;
 }
 
 tr.thead {
 	font-weight: bold;
 }
 
+/* action buttons area */
 #actionDiv {
-	width:60%;
+	width:62%;
 	height: 200px;
 	position: relative;
 	display: inline-block;
@@ -96,7 +109,22 @@ tr.thead {
 	background-color: cyan;
 }
 
+.actionSubdiv {
+	min-height: 12em;
+	min-width: 10em;
+	max-width: 16em;
+	background-color: magenta;
+	display: inline-block;
+	position: relative;
+}
+
+.actionSubheading {
+	font-family: "Alegreya Sans", sans-serif;
+}
+
 .actionBtn {
 	padding: .15em;
 	margin: .3em;
+	display: block;
+	max-width: 15em;
 }

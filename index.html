@@ -16,17 +16,19 @@
 
   <p id=help>click for help</p>
 
+<!-- header top area -->
   <div id="header">
  		<h1>Skillpoint Tracker</h1>
     <p>Quantify and keep track of the time and effort put into specific aspects of your life</p>
   </div>
 
+<!-- add buttons area -->
   <div id=addsDiv>
-
+  <!-- add skill -->
     <input id="skillInput" type="text" name="newSkill" value="Skill Name" />
     <button id="addSkillBtn" onclick="addSkill()">Add Skill</button>
     <br />
-
+  <!-- add action -->
     <input id="ActionInputName" type="text" name="newAction" value="Action Name" />
     <select id="ActionSelectSkill">
       <option>Corresponding Skill</option>
@@ -36,16 +38,19 @@
 
   </div>
 
+<!-- skills table area -->
   <div id="skillDiv">
   <h3>Skills</h3>
   <table id="skillTable">
   <tr class="thead">
   <td class="cell1">Name</td>
   <td class="cell2">Points</td>
+  <td class="cell3"></td>
   </tr>
   </table>
   </div>
 
+<!-- action buttoons area -->
   <div id="actionDiv">
   <h3>Actions</h3>
   </div>

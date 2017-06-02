@@ -1,51 +1,84 @@
 var skillArray = [];
-var pointArray = [];
 
+// onclick for Add Skill button
 function addSkill() {
+	// get input
 	var newSkill = document.getElementById("skillInput").value;
 	skillArray.push(newSkill);
-	pointArray.push(0);
+	var i = skillArray.indexOf(newSkill);
+	var cellId = i + "_cell";
+	var divId = i + "_div";
 
-	// insert rows and cells for new skill and point counter
+	// insert row and cells for new skill and point counter
 	var table = document.getElementById("skillTable");
 	var row = table.insertRow(skillArray.length);
-	row.className = "skillRow";
 	var cell1 = row.insertCell(0);
 	var cell2 = row.insertCell(1);
-
-	// put new skill and counter text in to new cells
 	cell1.innerHTML = newSkill;
 	cell1.className = "cell1";
 	cell2.innerHTML = 0;
 	cell2.className = "cell2";
+	cell2.id = cellId;
 
-	//add new skill to corresponding skills selection
+	// add new skill to corresponding skills selection
 	var select = document.getElementById("ActionSelectSkill");
 	var opt = document.createElement("option");
 	opt.textContent = newSkill;
 	opt.value = newSkill;
 	select.appendChild(opt);
+
+	// add div for corresponding skill in actions area
+	var mainDiv = document.getElementById("actionDiv");
+	var newDiv = document.createElement("div");
+	newDiv.className = "actionSubdiv";
+	newDiv.id = divId;
+	var newHeading = document.createElement("h4");
+	newHeading.className = "actionSubheading"
+	newHeading.textContent = newSkill;
+	mainDiv.appendChild(newDiv);
+	newDiv.appendChild(newHeading);
+
+	// create skill delete 'button'
+	var cell3 = row.insertCell(2);
+	cell3.className = "cell3";
+	var delBtn = document.createElement("p");
+	delBtn.className = "skillOpt";
+	delBtn.textContent = "delete";
+	delBtn.onclick = delSkill;
+	cell3.appendChild(delBtn);
+
+	// onclick for delete skill
+	function delSkill() {
+		row.remove();
+		newDiv.remove();
+		opt.remove();	
+	}
 }
 
+// onclick for Add Action button
 function addAction() {
+	// get inputs
 	var newAction = document.getElementById("ActionInputName").value;
 	var corrSkill = document.getElementById("ActionSelectSkill").value;
 	var pointValue = document.getElementById("ActionInputPoints").value;
+	var i = skillArray.indexOf(corrSkill);
+	var cellId = i + "_cell";
+	var divId = i + "_div";
 
-	// make button
-	var div = document.getElementById("actionDiv");
+	// create action button
+	var div = document.getElementById(divId);
 	var newButton = document.createElement("button");
 	div.appendChild(newButton);
-	newButton.textContent = newAction + ", + " + pointValue + " " + corrSkill;
+	newButton.textContent = newAction + ", +" + pointValue;
 	newButton.className = "actionBtn";
+	newButton.onclick = clickAction;
 
-
+	// onclick for Action buttons
 	function clickAction() {
-		var i = skillArray.indexOf(corrSkill);
-		var counter = document.getElementsByClassName("cell2")[i+1].textContent;
+		// make button add points to corresponding skill
+		var counter = document.getElementById(cellId).textContent;
 		newCounter = parseInt(counter,10) + parseInt(pointValue,10);
-		document.getElementsByClassName("cell2")[i+1].textContent = newCounter;
+		document.getElementById(cellId).textContent = newCounter;
 	}
-
-	newButton.onclick = clickAction
 }
+
