@@ -1,4 +1,6 @@
 var skillArray = [];
+var levelUp = 20;
+var total = 0;
 
 // onclick for Add Skill button
 function addSkill() {
@@ -79,6 +81,9 @@ function addAction() {
 		var counter = document.getElementById(cellId).textContent;
 		newCounter = parseInt(counter,10) + parseInt(pointValue,10);
 		document.getElementById(cellId).textContent = newCounter;
+		var levelCounter = document.getElementById("level");
+		total = total + parseInt(pointValue,10);
+		levelCounter.textContent = "Level: " + Math.floor(total/levelUp+1);
 	}
 }
 

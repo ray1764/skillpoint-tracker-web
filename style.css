@@ -45,6 +45,15 @@ p#help {
 }
 
 /* add buttons area */
+#level {
+	position: absolute;
+	margin: .6em 0 0 1em;
+	font-family: "Verdana", sans-serif;
+	font-size: 1.4em;
+	font-weight: 500;
+	color: purple;
+}
+
 #addsDiv {
 	text-align: center;
 	display:block;
