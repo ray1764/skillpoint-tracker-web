@@ -56,7 +56,13 @@ p#help {
 
 #addsDiv {
 	text-align: center;
-	display:block;
+	display: block;
+}
+
+#saves {
+	position: absolute;
+	display: inline-block;
+	right: 2em;
 }
 
 #addSkillBtn, #addActionBtn {
@@ -125,6 +131,7 @@ tr.thead {
 	background-color: magenta;
 	display: inline-block;
 	position: relative;
+	vertical-align: top;
 }
 
 .actionSubheading {

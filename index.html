@@ -4,14 +4,14 @@
 
 <head>
 
-  <title>TITLE</title>
+  <title>Skillpoint Tracker</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <link href="https://fonts.googleapis.com/css?family=Kumar+One" rel="stylesheet"> 
   <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet"> 
   
 </head>
 
-<body>
+<body id="bod">
   <script src="main.js"></script>
 
   <p id=help>click for help</p>
@@ -24,6 +24,7 @@
 
 <!-- add buttons area -->
   <p id="level">Level: 1</p>
+
   <div id=addsDiv>
   <!-- add skill -->
     <input id="skillInput" type="text" name="newSkill" value="Skill Name" />
@@ -34,10 +35,17 @@
     <select id="ActionSelectSkill">
       <option>Corresponding Skill</option>
     </select>
-    <input id="ActionInputPoints" type="number" name="PointValue" min="1" />
+    <input id="ActionInputPoints" type="number" name="PointValue" min="1" max="4"/>
     <button id="addActionBtn" onclick="addAction()">Add Action</button>
 
+    <div id="saves">
+      <button onclick="save()">save</button>
+      <!-- <br /> -->
+      <button onclick="load()">load</button>
+    </div>
+
   </div>
+
 
 <!-- skills table area -->
   <div id="skillDiv">
