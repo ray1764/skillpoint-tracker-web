@@ -54,6 +54,10 @@ p#help {
 	color: purple;
 }
 
+#tot {
+	display: none;
+}
+
 #addsDiv {
 	text-align: center;
 	display: block;
@@ -71,6 +75,10 @@ p#help {
 	font-weight:bold;
 	width:8em;
 	margin: .3em 2em .3em 2em;
+}
+
+#fileInput {
+	display: none;
 }
 
 /* skills table area */

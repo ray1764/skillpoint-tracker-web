@@ -24,6 +24,7 @@
 
 <!-- add buttons area -->
   <p id="level">Level: 1</p>
+  <p id="tot">total: 0</p>
 
   <div id=addsDiv>
   <!-- add skill -->
@@ -42,6 +43,11 @@
       <button onclick="save()">save</button>
       <!-- <br /> -->
       <button onclick="load()">load</button>
+      <button onclick="reset()">reset</button>
+      <button onclick="download()">save file</button>
+      <button onclick="launchOpen()">open file</button>
+      <input id="fileInput" type="file" onchange="openFile(event)"></input>
+      <!-- <button onclick="openFile(event)">load file</button> -->
     </div>
 
   </div>

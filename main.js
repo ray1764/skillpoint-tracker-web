@@ -1,6 +1,24 @@
 var skillArray = [];
+var pointArray = [];
 var levelUp = 20;
 var total = 0;
+
+// window.onload=load2;
+
+function load() {
+	var check=document.cookie.indexOf("page=");
+    if (check > 0) {
+		var cook = getCookie("page");
+		cook2 = cook.replace(/_/g, " ");
+		document.getElementById("bod").innerHTML = cook2;
+		totalStr = getCookie("totalPoints");
+		total = parseInt(totalStr, 10);
+
+  	} 
+    else {
+    	alert("no cook");
+       }
+}
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -25,19 +43,52 @@ function getCookie(cname) {
     return "";
 }
 
+function reset() {
+	if (confirm("Are you sure you want to reset all skillpoints and level?")) {
+		document.cookie = "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+		location.reload();
+	}
+}
+
 function save() {
 	var body = document.getElementById("bod");
 	var bodyhtml = body.innerHTML;
 	setCookie("page",bodyhtml,5000);
 	alert(bodyhtml);
+	setCookie("totalPoints",total,5000);
 }
 
-function load() {
-	var cook = getCookie("page");
-	cook2 = cook.replace(/_/g, " ");
-	alert(cook2);
-	document.getElementById("bod").innerHTML = cook2;
+function download(){
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+    a.download = "skillpoint_save.txt";
+    a.href = "data:text/html," + document.getElementById("bod").innerHTML; // Grab the HTML
+    a.click();
 }
+
+var openFile = function(event) {
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function(){
+    var text = reader.result;
+    alert(text);
+    document.getElementById("bod").innerHTML=text;
+    totalStr = document.getElementById("tot").textContent;
+    total = parseInt(totalStr, 10);
+    };
+    reader.readAsText(input.files[0]);
+  };
+
+  function launchOpen() {
+  	document.getElementById("fileInput").click();
+  }
+// function load(2)() {
+// 	var cook = getCookie("page");
+// 	cook2 = cook.replace(/_/g, " ");
+// 	alert(cook2);
+// 	document.getElementById("bod").innerHTML = cook2;
+// }
 
 // onclick for Add Skill button
 function addSkill() {
@@ -88,9 +139,12 @@ function addSkill() {
 
 	// onclick for delete skill
 	function delSkill() {
-		row.parentNode.removeChild(row);
-		newDiv.parentNode.removeChild(newDiv);
-		opt.parentNode.removeChild(opt);
+		if (confirm("Are you sure you want to delete this skill?")) {
+			row.parentNode.removeChild(row);
+			newDiv.parentNode.removeChild(newDiv);
+			opt.parentNode.removeChild(opt);
+		}
+		
 	}
 }
 
@@ -106,6 +160,7 @@ function addAction() {
 	}
 
 	var pointValue = document.getElementById("ActionInputPoints").value;
+	pointArray.push(pointValue);
 
 	if ((pointValue >=1 && pointValue <= 4) == false) {
 		alert("Please enter a point value between 1 and 4"); 
@@ -116,22 +171,42 @@ function addAction() {
 	var cellId = i + "cell";
 	var divId = i + "div";
 
+	// var j = pointArray.indexOf(pointValue);
+	// var btnId = j + "btn";
+
 	// create action button
 	var div = document.getElementById(divId);
 	var newButton = document.createElement("button");
 	div.appendChild(newButton);
 	newButton.textContent = newAction + ", +" + pointValue;
 	newButton.className = "actionBtn";
-	newButton.onclick = clickAction;
+	newButton.id=
+	// newButton.onclick = clickAction;
+	// newButton.addEventListener("click", clickAction)
+	newButton.setAttribute("onclick", "clickAction(this)");
 
-	// onclick for Action buttons
-	function clickAction() {
+	
+}
+
+// onclick for Action buttons
+	function clickAction(thing) {
 		// make button add points to corresponding skill
+		var currentDiv = thing.parentNode;
+		divId = currentDiv.id;
+		cellId = divId.replace("div","cell");
+		// alert(cellId);
 		var counter = document.getElementById(cellId).textContent;
-		newCounter = parseInt(counter,10) + parseInt(pointValue,10);
+		var name = thing.textContent;
+		var place = parseInt(name.length,10);
+		var num = name[place-1];
+		// pointNum = this.textContent[this.textContent.length];
+		// alert(num);
+		// pointValue = par
+		var newCounter = parseInt(counter,10) + parseInt(num,10);
 		document.getElementById(cellId).textContent = newCounter;
 		var levelCounter = document.getElementById("level");
-		total = total + parseInt(pointValue,10);
+		total = total + parseInt(num,10);
+		var totCounter = document.getElementById("tot");
 		levelCounter.textContent = "Level: " + Math.floor(total/levelUp+1);
+		totCounter.textContent = total;
 	}
-}
