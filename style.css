@@ -35,13 +35,15 @@
 	word-spacing: .15em;
 }
 
-p#help {
+a {
 	text-decoration: underline;
 	color: DarkGray;
 	font-size: .9em;
 	top:1%;
 	left:1%;
 	position: absolute;
+	cursor: pointer;
+	cursor: hand;
 }
 
 p#ver {
@@ -53,6 +55,11 @@ p#ver {
 }
 
 /* add buttons area */
+button {
+	cursor: pointer;
+	cursor: hand;
+}
+
 #level {
 	position: absolute;
 	margin: .8em 0 0 2em;
@@ -84,6 +91,7 @@ p#ver {
 	font-weight:bold;
 	width:8em;
 	margin: .3em 2em .3em 2em;
+
 }
 
 #fileInput {
@@ -142,7 +150,9 @@ h3 {
 	display: block;
 	margin: .25em;
 	vertical-align: middle;
-	text-align: right;
+	text-align: right;	
+	cursor: pointer;
+	cursor: hand;
 }
 
 tr.thead {
