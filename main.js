@@ -3,12 +3,15 @@ var pointArray = [];
 var levelUp = 20;
 var total = 0;
 
-// window.onload=load2;
+window.onload=load;
+window.onbeforeunload=save;
 
 function load() {
 	var check=document.cookie.indexOf("page=");
+	// alert(check)
     if (check > 0) {
 		var cook = getCookie("page");
+		if (cook!== "") 
 		cook2 = cook.replace(/_/g, " ");
 		document.getElementById("bod").innerHTML = cook2;
 		totalStr = getCookie("totalPoints");
@@ -16,7 +19,7 @@ function load() {
 
   	} 
     else {
-    	alert("no cook");
+    	// alert("no cook");
        }
 }
 
@@ -45,7 +48,10 @@ function getCookie(cname) {
 
 function reset() {
 	if (confirm("Are you sure you want to reset all skillpoints and level?")) {
+		
 		document.cookie = "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+		document.cookie = "totalPoints=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+		window.onbeforeunload = null;
 		location.reload();
 	}
 }
@@ -54,7 +60,7 @@ function save() {
 	var body = document.getElementById("bod");
 	var bodyhtml = body.innerHTML;
 	setCookie("page",bodyhtml,5000);
-	alert(bodyhtml);
+	// alert(bodyhtml);
 	setCookie("totalPoints",total,5000);
 }
 
@@ -71,9 +77,9 @@ var openFile = function(event) {
     var input = event.target;
     var reader = new FileReader();
     reader.onload = function(){
-    var text = reader.result;
-    alert(text);
-    document.getElementById("bod").innerHTML=text;
+    var currentHtml = reader.result;
+    alert(currentHtml);
+    document.getElementById("bod").innerHTML=currentHtml;
     totalStr = document.getElementById("tot").textContent;
     total = parseInt(totalStr, 10);
     };
@@ -83,6 +89,15 @@ var openFile = function(event) {
   function launchOpen() {
   	document.getElementById("fileInput").click();
   }
+
+  // function launchLoad() {
+  // 	document.getElementById("loadBtn").click();
+  // }
+
+  // function launchSave() {
+  // 	document.getElementById("saveBtn").click();
+  // }
+
 // function load(2)() {
 // 	var cook = getCookie("page");
 // 	cook2 = cook.replace(/_/g, " ");
@@ -98,10 +113,13 @@ function addSkill() {
 	var i = skillArray.indexOf(newSkill);
 	var cellId = i + "cell";
 	var divId = i + "div";
+	var delId = i + "del";
+	var optId = i + "opt";
 
 	// insert row and cells for new skill and point counter
 	var table = document.getElementById("skillTable");
 	var row = table.insertRow();
+	row.className = "skillRow";
 	var cell1 = row.insertCell(0);
 	var cell2 = row.insertCell(1);
 	cell1.innerHTML = newSkill;
@@ -115,6 +133,7 @@ function addSkill() {
 	var opt = document.createElement("option");
 	opt.textContent = newSkill;
 	opt.value = newSkill;
+	opt.id = optId;
 	select.appendChild(opt);
 
 	// add div for corresponding skill in actions area
@@ -132,21 +151,32 @@ function addSkill() {
 	var cell3 = row.insertCell(2);
 	cell3.className = "cell3";
 	var delBtn = document.createElement("p");
-	delBtn.className = "skillOpt";
+	delBtn.className = "delLink";
 	delBtn.textContent = "delete";
-	delBtn.onclick = delSkill;
+	delBtn.setAttribute("onclick", "delSkill(this)");
+	delBtn.id = delId;
 	cell3.appendChild(delBtn);
 
+
 	// onclick for delete skill
-	function delSkill() {
-		if (confirm("Are you sure you want to delete this skill?")) {
-			row.parentNode.removeChild(row);
-			newDiv.parentNode.removeChild(newDiv);
-			opt.parentNode.removeChild(opt);
-		}
-		
+}
+
+function delSkill(thing) {
+	if (confirm("Are you sure you want to delete this skill?")) {
+		var delId = thing.id;
+		var cellId = delId.replace("del", "cell");
+		var divId = delId.replace("del", "div");
+		var optId = delId.replace("del", "opt")
+		var row = document.getElementById(cellId).parentNode;
+		var div = document.getElementById(divId);
+		var opt = document.getElementById(optId);
+
+		row.parentNode.removeChild(row);
+		div.parentNode.removeChild(div);
+		opt.parentNode.removeChild(opt);
 	}
 }
+
 
 // onclick for Add Action button
 function addAction() {
@@ -180,7 +210,6 @@ function addAction() {
 	div.appendChild(newButton);
 	newButton.textContent = newAction + ", +" + pointValue;
 	newButton.className = "actionBtn";
-	newButton.id=
 	// newButton.onclick = clickAction;
 	// newButton.addEventListener("click", clickAction)
 	newButton.setAttribute("onclick", "clickAction(this)");

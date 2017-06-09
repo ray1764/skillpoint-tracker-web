@@ -1,6 +1,7 @@
-* {border: 1px solid rgba(0,0,0,0.4);
+* { /*border: 1px solid rgba(0,0,0,0.4);*/
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 } 
 
 /* header top area */
@@ -8,7 +9,6 @@
 	width: 100%;
 	text-align: center;
 	display:block;
-	z-index: 2;
 	background-color: #5B3C66;
 	color:white;
 }
@@ -29,7 +29,7 @@
 	font-size: 1.2em;
 	font-weight: 400;
 	width: 60%;
-	padding-bottom: 0.3em;
+	padding-bottom: 0.5em;
 	margin-left: auto;
 	margin-right: auto;
 	word-spacing: .15em;
@@ -38,19 +38,27 @@
 p#help {
 	text-decoration: underline;
 	color: DarkGray;
-	font-size: .8em;
+	font-size: .9em;
 	top:1%;
 	left:1%;
+	position: absolute;
+}
+
+p#ver {
+	color: DarkGray;
+	font-size: .8em;
+	top:1%;
+	right:1%;
 	position: absolute;
 }
 
 /* add buttons area */
 #level {
 	position: absolute;
-	margin: .6em 0 0 1em;
+	margin: .8em 0 0 2em;
 	font-family: "Verdana", sans-serif;
 	font-size: 1.4em;
-	font-weight: 500;
+	font-weight: 600;
 	color: purple;
 }
 
@@ -61,6 +69,7 @@ p#help {
 #addsDiv {
 	text-align: center;
 	display: block;
+	padding: .25em 0 .75em 0;
 }
 
 #saves {
@@ -84,24 +93,33 @@ p#help {
 /* skills table area */
 h3 {
 	padding-top: 0.1em;
+	padding-left: .2em;
 	text-decoration: underline;
 	font-family: "Alegreya Sans", sans-serif;
 }
 
 #skillDiv {
-	width:35%;
-	height: 200px;
+	width:34%;
+	min-height: 13em;
 	position: relative;
 	left: 1%;
-	background-color: yellow;
+	background-color: #D9D3F9;
+	border-radius: 3px;
 	display: inline-block;
+	padding: 0 .2em 1em .2em;
 }
 
 #skillTable {
 	width: 98%;
 	margin-left: auto;
-	margin-right: auto;;
+	margin-right: auto;
+	border: 1px solid black;
+	border-collapse: collapse;
 
+}
+
+.skillRow {
+	border: 1px solid black;
 }
 
 .cell1 {
@@ -109,12 +127,22 @@ h3 {
 	max-width: 65%;
 }
 
-.skillOpt {
+.cell2 {
+	text-align: center;
+}
+
+.cell3 {
+	width: 10%;
+}
+
+.delLink {
 	text-decoration: underline;
 	font-size: .7em;
 	color: blue;
-	display: inline;
+	display: block;
 	margin: .25em;
+	vertical-align: middle;
+	text-align: right;
 }
 
 tr.thead {
@@ -123,27 +151,32 @@ tr.thead {
 
 /* action buttons area */
 #actionDiv {
-	width:62%;
-	height: 200px;
+	width:63%;
+	min-height: 13em;
 	position: relative;
 	display: inline-block;
 	float: right;
 	right: 1%;
-	background-color: cyan;
+	background-color: #D9D3F9;
+	border-radius: 3px;
+	padding: 0 .2em 1em .2em;
 }
 
 .actionSubdiv {
-	min-height: 12em;
+	min-height: 10em;
 	min-width: 10em;
-	max-width: 16em;
-	background-color: magenta;
+	max-width: 20em;
+	border: 1px solid purple;
+	border-radius: 8px;
 	display: inline-block;
 	position: relative;
 	vertical-align: top;
+	margin: .2em;
 }
 
 .actionSubheading {
 	font-family: "Alegreya Sans", sans-serif;
+	padding-left: 8px;
 }
 
 .actionBtn {
