@@ -13,9 +13,8 @@
 
 <body id="bod">
   <script src="main.js"></script>
-
   <p id=help><a href="help/help.html" target="_blank">Click for help</a></p>
-  <p id=ver>Ver 1.0 &nbsp; &copy;Ray1764</p>
+  <p id=ver>Ver 1.0 -Ray1764 2017</p>
 
 <!-- header top area -->
   <div id="header">
@@ -25,7 +24,7 @@
 
 <!-- add buttons area -->
   <p id="level">Level: 1</p>
-  <p id="tot">total: 0</p>
+  <p id="tot">0</p>
 
   <div id=addsDiv>
   <!-- add skill -->
@@ -37,17 +36,17 @@
     <select id="ActionSelectSkill">
       <option>Corresponding Skill</option>
     </select>
-    <input id="ActionInputPoints" type="number" name="PointValue" min="1" max="4 value="1"/>
+    <input id="ActionInputPoints" type="number" name="PointValue" min="1" max="4" value="1"/>
     <button id="addActionBtn" onclick="addAction()">Add Action</button>
 
     <div id="saves">
-    <!--   <button id="saveBtn" onclick="save()">save</button>
-      <br />
-      <button id="loadBtn" onclick="load()">load</button> -->
+      <button id="saveBtn" onclick="save()">save</button>
+      <!-- <br /> -->
+      <button id="loadBtn" onclick="load()">load</button>
       <button onclick="reset()">Reset</button>
       <button onclick="download()">Export to file</button>
       <button onclick="launchOpen()">Load from file</button>
-      <input id="fileInput" type="file" onchange="openFile(event)"></input>
+      <input id="fileInput" type="file" onchange="openFile(event)" />
     </div>
 
   </div>

@@ -3,23 +3,44 @@ var pointArray = [];
 var levelUp = 20;
 var total = 0;
 
-window.onload=load;
-window.onbeforeunload=save;
+window.onload=launchLoad;
+window.onunload=launchSave;
+// 	alert("dsd");
+// 	// var body = document.getElementById("bod");
+// 	// var bodyhtml = body.innerHTML;
+// 	// setCookie("page",bodyhtml,5000);
+// 	// alert(bodyhtml);
+// 	// setCookie("totalPoints",total,5000);
+// }
+// ;
+
 
 function load() {
 	var check=document.cookie.indexOf("page=");
-	// alert(check)
-    if (check > 0) {
+	alert(check);
+	alert(document.cookie);
+    if (check >= 0) {
+    	// alert("fds")
 		var cook = getCookie("page");
-		if (cook!== "") 
-		cook2 = cook.replace(/_/g, " ");
+		var cook2 = cook.replace(/%/g, " ");
+		alert(cook2);
 		document.getElementById("bod").innerHTML = cook2;
 		totalStr = getCookie("totalPoints");
 		total = parseInt(totalStr, 10);
+		alert(total);
+		numSkillsStr = getCookie("numSkills");
+		numSkills = parseInt(numSkillsStr, 10);
+		alert(numSkills);
+		skillArray=[];
+		for(a=0;a<numSkills;a++){
+    		skillArray[a] = getCookie("skill"+a);
+		}
+		alert(skillArray);
 
+		return
   	} 
     else {
-    	// alert("no cook");
+    alert("no cook");
        }
 }
 
@@ -27,13 +48,15 @@ function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
+    console.log("setCookie ran")
+    return
 }
 
 function getCookie(cname) {
     var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
+    // var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = document.cookie.split(';');
     for(var i = 0; i <ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
@@ -51,17 +74,36 @@ function reset() {
 		
 		document.cookie = "page=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
 		document.cookie = "totalPoints=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-		window.onbeforeunload = null;
+		
+		var theCookies = document.cookie.split(';');
+		for(a=0;a<theCookies.length;a++){
+    		document.cookie = "skill"+a+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+		}
+
+		document.cookie = "numSkills=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+		window.onunload = null;
+		alert(document.cookie);
 		location.reload();
 	}
 }
 
 function save() {
+	// alert("dsd");
 	var body = document.getElementById("bod");
 	var bodyhtml = body.innerHTML;
-	setCookie("page",bodyhtml,5000);
-	// alert(bodyhtml);
-	setCookie("totalPoints",total,5000);
+	alert(bodyhtml);
+	body2=bodyhtml.replace(/\s+/g, "%");
+	alert(body2);
+	setCookie("page",body2,1000);
+	setCookie("totalPoints",total,1000);
+	numSkills = skillArray.length;
+	for(a=0;a<numSkills;a++) {
+   		setCookie("skill"+a,skillArray[a],1000);
+   		console.log(a + " of " + numSkills + " - " + skillArray[a])
+	}
+    setCookie("numSkills",numSkills,1000)
+    alert(document.cookie);
+
 }
 
 function download(){
@@ -82,7 +124,18 @@ var openFile = function(event) {
     document.getElementById("bod").innerHTML=currentHtml;
     totalStr = document.getElementById("tot").textContent;
     total = parseInt(totalStr, 10);
+    var numSkills = document.getElementById("ActionSelectSkill").childElementCount - 1;
+    console.log(numSkills);
+    skillArray=[];
+    for (a=0;a<numSkills;a++){
+    	var skillCell = document.getElementsByClassName("cell1")[a+1];
+    	var skillName = skillCell.textContent;
+    	console.log(skillName);
+    	skillArray[a] = skillName;
+    }
+    console.log(skillArray);
     };
+    
     reader.readAsText(input.files[0]);
   };
 
@@ -90,13 +143,13 @@ var openFile = function(event) {
   	document.getElementById("fileInput").click();
   }
 
-  // function launchLoad() {
-  // 	document.getElementById("loadBtn").click();
-  // }
+  function launchLoad() {
+  	document.getElementById("loadBtn").click();
+  }
 
-  // function launchSave() {
-  // 	document.getElementById("saveBtn").click();
-  // }
+  function launchSave() {
+  	document.getElementById("saveBtn").click();
+  }
 
 // function load(2)() {
 // 	var cook = getCookie("page");
