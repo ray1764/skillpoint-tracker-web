@@ -1,0 +1,10 @@
+Ideas
+-Each skill has its oven level = needs its own total counter
+-Display stats like 'favorite action/completed most often' = need click counter for each action
+-stat for 'fav skill/skill w/ most completed actions' = total click counters for each skill
+-Able to delete action = need id for each
+
+Probs
+-If server html updated, browser page will not update (unless reset) because the cookie loads the old html
+-Because of how cookie saves/loads html, html cannot contain ';' or '%'
+*for more counters/variables... need a database. and then server side, prob php

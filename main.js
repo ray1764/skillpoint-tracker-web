@@ -5,42 +5,25 @@ var total = 0;
 
 window.onload=launchLoad;
 window.onunload=launchSave;
-// 	alert("dsd");
-// 	// var body = document.getElementById("bod");
-// 	// var bodyhtml = body.innerHTML;
-// 	// setCookie("page",bodyhtml,5000);
-// 	// alert(bodyhtml);
-// 	// setCookie("totalPoints",total,5000);
-// }
-// ;
-
 
 function load() {
 	var check=document.cookie.indexOf("page=");
-	alert(check);
-	alert(document.cookie);
     if (check >= 0) {
-    	// alert("fds")
 		var cook = getCookie("page");
 		var cook2 = cook.replace(/%/g, " ");
-		alert(cook2);
 		document.getElementById("bod").innerHTML = cook2;
-		totalStr = getCookie("totalPoints");
+		var totalStr = getCookie("totalPoints");
 		total = parseInt(totalStr, 10);
-		alert(total);
-		numSkillsStr = getCookie("numSkills");
-		numSkills = parseInt(numSkillsStr, 10);
-		alert(numSkills);
+		var numSkillsStr = getCookie("numSkills");
+		var numSkills = parseInt(numSkillsStr, 10);
 		skillArray=[];
 		for(a=0;a<numSkills;a++){
     		skillArray[a] = getCookie("skill"+a);
 		}
-		alert(skillArray);
-
 		return
   	} 
     else {
-    alert("no cook");
+    	return
        }
 }
 
@@ -49,7 +32,6 @@ function setCookie(cname, cvalue, exdays) {
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
-    console.log("setCookie ran")
     return
 }
 
@@ -82,27 +64,21 @@ function reset() {
 
 		document.cookie = "numSkills=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
 		window.onunload = null;
-		alert(document.cookie);
 		location.reload();
 	}
 }
 
 function save() {
-	// alert("dsd");
 	var body = document.getElementById("bod");
 	var bodyhtml = body.innerHTML;
-	alert(bodyhtml);
-	body2=bodyhtml.replace(/\s+/g, "%");
-	alert(body2);
+	var body2=bodyhtml.replace(/\s+/g, "%");
 	setCookie("page",body2,1000);
 	setCookie("totalPoints",total,1000);
-	numSkills = skillArray.length;
+	var numSkills = skillArray.length;
 	for(a=0;a<numSkills;a++) {
    		setCookie("skill"+a,skillArray[a],1000);
-   		console.log(a + " of " + numSkills + " - " + skillArray[a])
 	}
     setCookie("numSkills",numSkills,1000)
-    alert(document.cookie);
 
 }
 
@@ -119,23 +95,19 @@ var openFile = function(event) {
     var input = event.target;
     var reader = new FileReader();
     reader.onload = function(){
-    var currentHtml = reader.result;
-    alert(currentHtml);
-    document.getElementById("bod").innerHTML=currentHtml;
-    totalStr = document.getElementById("tot").textContent;
-    total = parseInt(totalStr, 10);
-    var numSkills = document.getElementById("ActionSelectSkill").childElementCount - 1;
-    console.log(numSkills);
-    skillArray=[];
-    for (a=0;a<numSkills;a++){
-    	var skillCell = document.getElementsByClassName("cell1")[a+1];
-    	var skillName = skillCell.textContent;
-    	console.log(skillName);
-    	skillArray[a] = skillName;
-    }
-    console.log(skillArray);
+    	var currentHtml = reader.result;
+    	alert(currentHtml);
+   		document.getElementById("bod").innerHTML=currentHtml;
+    	var totalStr = document.getElementById("tot").textContent;
+    	total = parseInt(totalStr, 10);
+    	var numSkills = document.getElementById("ActionSelectSkill").childElementCount - 1;
+    	skillArray=[];
+    	for (a=0;a<numSkills;a++){
+    		var skillCell = document.getElementsByClassName("cell1")[a+1];
+    		var skillName = skillCell.textContent;
+    		skillArray[a] = skillName;
+    	}
     };
-    
     reader.readAsText(input.files[0]);
   };
 
@@ -150,13 +122,6 @@ var openFile = function(event) {
   function launchSave() {
   	document.getElementById("saveBtn").click();
   }
-
-// function load(2)() {
-// 	var cook = getCookie("page");
-// 	cook2 = cook.replace(/_/g, " ");
-// 	alert(cook2);
-// 	document.getElementById("bod").innerHTML = cook2;
-// }
 
 // onclick for Add Skill button
 function addSkill() {
@@ -254,20 +219,13 @@ function addAction() {
 	var cellId = i + "cell";
 	var divId = i + "div";
 
-	// var j = pointArray.indexOf(pointValue);
-	// var btnId = j + "btn";
-
 	// create action button
 	var div = document.getElementById(divId);
 	var newButton = document.createElement("button");
 	div.appendChild(newButton);
 	newButton.textContent = newAction + ", +" + pointValue;
 	newButton.className = "actionBtn";
-	// newButton.onclick = clickAction;
-	// newButton.addEventListener("click", clickAction)
-	newButton.setAttribute("onclick", "clickAction(this)");
-
-	
+	newButton.setAttribute("onclick", "clickAction(this)");	
 }
 
 // onclick for Action buttons
@@ -276,14 +234,10 @@ function addAction() {
 		var currentDiv = thing.parentNode;
 		divId = currentDiv.id;
 		cellId = divId.replace("div","cell");
-		// alert(cellId);
 		var counter = document.getElementById(cellId).textContent;
 		var name = thing.textContent;
 		var place = parseInt(name.length,10);
 		var num = name[place-1];
-		// pointNum = this.textContent[this.textContent.length];
-		// alert(num);
-		// pointValue = par
 		var newCounter = parseInt(counter,10) + parseInt(num,10);
 		document.getElementById(cellId).textContent = newCounter;
 		var levelCounter = document.getElementById("level");
